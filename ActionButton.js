@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import ActionButtonItem from './ActionButtonItem';
+import Modal from "react-native-modal";
 
 const alignMap = {
   center: {
@@ -234,22 +235,51 @@ export default class ActionButton extends Component {
         </TouchableWithoutFeedback>
       );
     }
-    return (
-      <View
-        pointerEvents="box-none"
-        style={styles.overlay}
-      >
-        {backdrop}
 
-        {this.props.children && this.renderActions()}
+    if (this.state.active) {
+      return(
+        <Modal 
+          isVisible={true}
+          animationIn={{ from: { opacity: 1 }, to: { opacity: 1 } }}
+          animationOut={{ from: { opacity: 0 }, to: { opacity: 0 } }}
+          animationInTiming={0}
+          animationOutTiming={0}
+          style={{ margin: 0 }}
+        >
+          <View
+            pointerEvents="box-none"
+            style={styles.overlay}
+          >
+            {backdrop}
+
+            {this.props.children && this.renderActions()}
+            <View
+              pointerEvents="box-none"
+              style={this.getActionContainerStyle()}
+            >
+              {this.renderButton()}
+            </View>
+          </View>
+        </Modal>
+      )
+    }else {
+      return (
         <View
           pointerEvents="box-none"
-          style={this.getActionContainerStyle()}
+          style={styles.overlay}
         >
-          {this.renderButton()}
+          {backdrop}
+
+          {this.props.children && this.renderActions()}
+          <View
+            pointerEvents="box-none"
+            style={this.getActionContainerStyle()}
+          >
+            {this.renderButton()}
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
 }
 
