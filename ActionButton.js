@@ -106,6 +106,7 @@ export default class ActionButton extends Component {
         style={this.getActionButtonStyle()}
       >
         <TouchableOpacity
+          activeOpacity={1}
           onLongPress={this.props.onLongPress}
           onPress={() => {
               this.props.onPress();
