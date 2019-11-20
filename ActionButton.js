@@ -215,7 +215,7 @@ export default class ActionButton extends Component {
 
   render() {
     let backdrop;
-    if (this.state.active) {
+    if (this.state.active && this.props.backdrop === true) {
       backdrop = (
         <TouchableWithoutFeedback
           style={styles.overlay}
