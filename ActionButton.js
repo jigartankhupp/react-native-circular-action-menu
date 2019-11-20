@@ -240,10 +240,9 @@ export default class ActionButton extends Component {
       return(
         <Modal 
           isVisible={true}
-          animationIn={{ from: { opacity: 1 }, to: { opacity: 1 } }}
-          animationOut={{ from: { opacity: 0 }, to: { opacity: 0 } }}
-          animationInTiming={0}
-          animationOutTiming={0}
+          animationType="fade"
+          animationInTiming={100}
+          animationOutTiming={100}
           style={{ margin: 0 }}
         >
           <View
